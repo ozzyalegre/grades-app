@@ -17,8 +17,6 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('period');
-
-            $table->foreignId('term_id');
         });
     }
 

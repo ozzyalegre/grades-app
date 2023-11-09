@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Term extends Model
 {
     use HasFactory;
+    protected $fillable = ["name"];
 
     public function reports(){
         return $this->hasMany(Report::class);

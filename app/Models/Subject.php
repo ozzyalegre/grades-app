@@ -9,7 +9,5 @@ class Subject extends Model
 {
     use HasFactory;
 
-    public function subject(){
-        return $this->belongsTo(Term::class);
-    }
+    protected $fillable = ["name", "period"];
 }

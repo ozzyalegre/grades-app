@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Grade extends Model
 {
     use HasFactory;
+    protected $fillable = ["letter", "gpa"];
 
+
+    public function report(){
+        return $this->belongsTo(Report::class);
+    }
 
     public function subject(){
-        return $this->hasMany(Subject::class);
+        return $this->belongsTo(Subject::class);
     }
 
     public function term(){
