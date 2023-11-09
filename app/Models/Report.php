@@ -9,4 +9,8 @@ class Report extends Model
 {
     use HasFactory;
     protected $fillable = ["message_id", "date_received", "from", "html_body"];
+
+    public function grades(){
+        return $this->hasMany(Grade::class);
+    }
 }
