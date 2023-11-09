@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmailController;
+use App\Models\Report;
 use Illuminate\Support\Facades\Route;
 use App\Services\MailService;
 use App\Services\ParseService;
@@ -27,14 +28,21 @@ Route::get('/getmail', function () {
     // Get Latest Message
     $message = (new MailService)->GetMail("10/27/2023");
     
+    // Write Message to DB
+    Report::create([
+        'message_id' => $message->mid,
+        'date_received' => $message->date_received,
+        'from' => $message->from,
+        'html_body' => $message->body,
+    ]);
+    
     // Parse New Message
     $parser = new ParseService;
     $parsed_class_grades = $parser->ParseHtml($message->body);
     $parsed_terms = $parser->GetTerm();
 
-    // Store New Classes 
+    // Store New Report 
     
-
 
 
     dd(
