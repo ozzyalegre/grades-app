@@ -13,15 +13,20 @@ class GradesTable extends Component
     public $terms;
     public $subjects_grades_latest = [];
     public $report_latest;
+    public $current_term;
+
+
 
     public function mount(){
         $this->terms = Term::all();
         $this->report_latest = Report::get()->last();
+        $this->current_term = Term::findCurrentTerm();
 
         $subjects_list = Subject::all();
         foreach ($subjects_list as $s) {
             $list_entry = (object) [
                 'subject_name' => $s->name,
+                'two_week_avg' => 0,
                 'latest_grades' => []
             ];
             foreach ($this->terms as $t){
