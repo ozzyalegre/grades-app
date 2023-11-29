@@ -24,6 +24,7 @@ class DataStorageService
             return False;
         }
     }
+
     public function CreateReport($message){
         $report = Report::create([
             'message_id' => $message->mid,
@@ -53,7 +54,6 @@ class DataStorageService
                 $grade->term()->associate($termOfGrade);
                 $grade->save();
             }
-
         }
     }
 
