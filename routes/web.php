@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\EmailController;
 use App\Services\DataStorageService;
 use Illuminate\Support\Facades\Route;
@@ -27,17 +27,16 @@ Route::get('/', function () {
 // Route::get('/getmail', [EmailController::class, ('get_mail')]);
 Route::get('/getmail', function () {
     // Get Latest Message
-    $message = (new MailService)->GetMail("10/27/2023");
+    $today = Carbon::today();
+    $message = (new MailService)->GetMail($today);
     
     // Parse New Message
     $parser = new ParseService;
     $parsed_class_grades = $parser->ParseHtml($message->body);
     $parsed_terms = $parser->GetTerm();
 
-    // dd($parsed_terms, $parsed_class_grades);
     // DataStorage Time!
     $ds = new DataStorageService;
-
     $ds->CreateTerms($parsed_terms);    // Create Terms if they do not exist
     $report = $ds->CreateReport($message);    // Create New Report entry
     $ds->CreateSubjectsAndGrades($parsed_class_grades, $report); // Adds grades to grades table & subjects if they do not exist
@@ -54,5 +53,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
 });
