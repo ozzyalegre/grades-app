@@ -51,7 +51,7 @@
             </tbody>
           </table>
           <div class="mt-4 sm:mt-0 mr-4 sm:flex-none float-right">
-            <p class="mt-2 italic text-xs text-gray-700">Last Updated: {{ $report_latest->date_received}}</p>
+            <p class="mt-2 italic text-xs text-gray-700">Last Report: {{ $report_latest->date_received}}</p>
           </div>
         </div>
       </div>
