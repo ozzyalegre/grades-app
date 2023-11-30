@@ -14,14 +14,7 @@
               <tr>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Class</th>
                 @foreach ($terms as $t)
-                    
-                
-                    @if ($t->id > $current_term->id || $t->id < $current_term->id)
-                        <th scope="col" class="hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900">{{ $t->name }}</th>
-                    @else
-                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">{{ $t->name }}</th>
-                    @endif
-                    
+                    <th scope="col" class=" {{ !($t->id == $current_term->id) ? 'hidden md:table-cell' : '' }} px-3 py-3.5 text-left text-sm font-semibold text-gray-900">{{ $t->name }}</th>    
                 @endforeach                
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Lo/Avg/Hi</th>
               </tr>
@@ -32,15 +25,9 @@
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{ $s->subject_name }}</td>
                             @foreach ($s->latest_grades as $g)
                                 @if ($g != null)
-                                    @if ($g->term_id > $current_term->id || $g->term_id < $current_term->id)
-                                        <td class="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $g->gpa }} / {{ $g->letter }} </td>
-                                    @else
-                                    @if (floatval($g->gpa) <= 2.60)    
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm bg-gray-100 text-orange-500 font-bold">{{ $g->gpa }} / {{ $g->letter }} </td>
-                                    @else
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm bg-gray-100 text-gray-500">{{ $g->gpa }} / {{ $g->letter }} </td>
-                                    @endif
-                                    @endif 
+                                    <th scope="col" class=" {{ !($t->id == $current_term->id) ? 'hidden md:table-cell' : '' }} 
+                                        {{ ((floatval($g->gpa) <= 2.60) ? 'text-orange-500 font-bold' : 'text-gray-500') }} 
+                                        px-3 py-3.5 text-left text-sm text-gray-900 ">{{ $g->gpa }} / {{ $g->letter }}</th> 
                                 @endif
                             @endforeach
                     </tr>
