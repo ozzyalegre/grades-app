@@ -15,8 +15,6 @@ class GradesTable extends Component
     public $report_latest;
     public $current_term;
 
-
-
     public function mount(){
         $this->terms = Term::all();
         $this->report_latest = Report::get()->last();
