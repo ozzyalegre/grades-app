@@ -41,7 +41,7 @@ Route::get('/getmail', function () {
     $report = $ds->CreateReport($message);    // Create New Report entry
     $ds->CreateSubjectsAndGrades($parsed_class_grades, $report); // Adds grades to grades table & subjects if they do not exist
 
-    // return($message->body);
+    return view('dashboard');
 });
 
 
