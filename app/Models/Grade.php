@@ -26,6 +26,16 @@ class Grade extends Model
         
     }
 
+    public static function last10GradesBySubject($currentTerm){
+        return Grade::with('subject')
+            ->where('term_id', $currentTerm->id)
+            ->latest('created_at')
+            ->take(10)
+            ->get()
+            ->groupBy('subject_id');
+    }
+
+
     public function report(){
         return $this->belongsTo(Report::class);
     }

@@ -3,8 +3,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-md rounded-md py-8">
                 <livewire:dashboard-data />
-                
-                <livewire:grades-table />
             </div>
             <livewire:class-charts />
         </div>

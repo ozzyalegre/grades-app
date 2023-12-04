@@ -13,4 +13,10 @@ class Report extends Model
     public function grades(){
         return $this->hasMany(Grade::class);
     }
+
+    public static function lastReportGrades(){
+        return Report::latest()->first()->grades()
+            ->with(['subject', 'term'])
+            ->get();
+    }
 }
