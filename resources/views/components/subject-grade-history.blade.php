@@ -1,6 +1,6 @@
 <div>
     <div>
-        <h1 class="text-sm px-3 text-center">{{ $class_name }}</h1>
+        <h1 class="text-sm px-3 text-center">{{ $subject_name }}</h1>
         <canvas id="myChart-{{ $subject_id }}" class="p-4"></canvas>
     </div>
 </div> 
@@ -11,10 +11,10 @@ const ctx{{$subject_id}} = document.getElementById("myChart-{{ $subject_id }}");
 new Chart(ctx{{$subject_id}}, {
     type: 'line',
     data: {
-        labels: @js($class_grades_dates),
+        labels: @js($subject_grades_dates),
         datasets: [{
             label: 'GPA',
-            data: @js($class_grades_gpas),
+            data: @js($subject_grades_gpas),
             borderWidth: 1,
             tension: 0.5
         }]

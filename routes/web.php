@@ -1,6 +1,9 @@
 <?php
+
+use App\Http\Controllers\DashboardDataController;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\EmailController;
+use App\Services\DashboardDataService;
 use App\Services\DataStorageService;
 use Illuminate\Support\Facades\Route;
 use App\Services\MailService;
@@ -40,8 +43,6 @@ Route::get('/getmail', function () {
     $ds->CreateTerms($parsed_terms);    // Create Terms if they do not exist
     $report = $ds->CreateReport($message);    // Create New Report entry
     $ds->CreateSubjectsAndGrades($parsed_class_grades, $report); // Adds grades to grades table & subjects if they do not exist
-
-    return view('dashboard');
 });
 
 
@@ -50,7 +51,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardDataController::class, 'show'])->name('dashboard');
 });
