@@ -20,21 +20,11 @@ class Grade extends Model
         return $latest_grade;
     }
 
-    public static function findPastGrades($term_id, $subject_id, $column){
-        $past_grades = Grade::latest()->where([['term_id', $term_id], ['subject_id', $subject_id]])->pluck($column)->take(10);
+    public static function findPastGrades($term_id, $subject_id, $column, $take_num){
+        $past_grades = Grade::latest()->where([['term_id', $term_id], ['subject_id', $subject_id]])->pluck($column)->take($take_num);
         return $past_grades;
         
     }
-
-    public static function last10GradesBySubject($currentTerm){
-        return Grade::with('subject')
-            ->where('term_id', $currentTerm->id)
-            ->latest('created_at')
-            ->take(10)
-            ->get()
-            ->groupBy('subject_id');
-    }
-
 
     public function report(){
         return $this->belongsTo(Report::class);
