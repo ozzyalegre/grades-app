@@ -11,9 +11,9 @@
                     <tr>
                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Class</th>
                         @foreach ($terms as $t)
-                            <th scope="col" class=" {{ !($t->id == $currentTerm->id) ? 'hidden md:table-cell' : '' }} px-3 py-3.5 text-left text-sm font-semibold text-gray-900">{{ $t->name }}</th>    
+                            <th scope="col" class=" {{ !($t->id == $currentTerm->id) ? 'hidden md:table-cell' : '' }} px-3 py-3.5 text-center text-sm font-semibold text-gray-900">{{ $t->name }}</th>    
                         @endforeach                
-                        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Lo/Avg/Hi</th>
+                        <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900">Lo/Avg/Hi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -22,9 +22,24 @@
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{ $s->name }}</td>
                             @foreach ($s->grades as $g)
                                 @if ($g != null)
-                                    <td scope="col" class=" {{ !($t->id == $currentTerm->id) ? 'hidden md:table-cell' : '' }} 
-                                        {{ ((floatval($g->gpa) <= 2.60) ? 'text-orange-500 font-bold' : 'text-gray-500') }} 
-                                        px-3 py-3.5 text-left text-sm text-gray-900 ">{{ $g->gpa }} / {{ $g->letter }}</td> 
+                                    
+                                    <td scope="col" class=" {{ !($g->term->id == $currentTerm->id) ? 'hidden sm:table-cell' : '' }}">
+                                        @php 
+                                            // Simple Logic for grade color warnings
+                                            if (floatval($g->gpa) <= 5.00){
+                                                $calc_gpa = (floatval($g->gpa)/4)*100;
+                                            }
+                                            else{
+                                                $calc_gpa = floatval($g->gpa);
+                                            }
+                                            
+                                        @endphp
+                                        <div class= "{{ ($calc_gpa <= 65 ? 'text-yellow-800 bg-yellow-100' : 'text-green-800 bg-green-100') }} 
+                                        rounded-md text-xs font-medium px-1 py-1 w-14 h-14 text-center m-auto">
+                                            <div class="text-lg">{{ $g->letter }}</div>
+                                            <div>{{ $g->gpa }}</div>
+                                        </div>
+                                    </td> 
                                 @endif
                             @endforeach
                         </tr>

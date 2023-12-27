@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardDataController;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\WebhookController;
 use App\Services\DashboardDataService;
 use App\Services\DataStorageService;
 use Illuminate\Support\Facades\Route;
@@ -20,31 +21,9 @@ use App\Services\ParseService;
 |
 */
 
-
-
-
 Route::get('/', function () {
     return view('welcome');
 });
-
-// Route::get('/getmail', [EmailController::class, ('get_mail')]);
-Route::get('/getmail', function () {
-    // Get Latest Message
-    $today = Carbon::today();
-    $message = (new MailService)->GetMail($today);
-    
-    // Parse New Message
-    $parser = new ParseService;
-    $parsed_class_grades = $parser->ParseHtml($message->body);
-    $parsed_terms = $parser->GetTerm();
-
-    // DataStorage Time!
-    $ds = new DataStorageService;
-    $ds->CreateTerms($parsed_terms);    // Create Terms if they do not exist
-    $report = $ds->CreateReport($message);    // Create New Report entry
-    $ds->CreateSubjectsAndGrades($parsed_class_grades, $report); // Adds grades to grades table & subjects if they do not exist
-});
-
 
 Route::middleware([
     'auth:sanctum',
