@@ -10,7 +10,6 @@ class WebhookController extends Controller
 {
     public function processIncomingWebhook(Request $request){
         $body = $request->all();
-        
         return response()->json(['message' => 'Report added successfully.', 'data' => $body], 201);;
     }
 
