@@ -10,6 +10,7 @@ class WebhookController extends Controller
 {
     public function processIncomingWebhook(Request $request){
         $body = $request->getContent();
+        logger($body);
         $new_report = $this->parseAndStore($body);
         return response()->json(['message' => 'Report added successfully.', 'request' => $new_report], 201);
     }
