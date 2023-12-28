@@ -9,9 +9,10 @@ use App\Services\DataStorageService;
 class WebhookController extends Controller
 {
     public function processIncomingWebhook(Request $request){
-        $body = json_decode($request);
+        $body = $request->all();
+        // dd($body);
         // $new_report = $this->parseAndStore($body);
-        return response()->json(['message' => 'Report added successfully.', 'request' => $body, ], 201);
+        return response()->json(['message' => 'Report added successfully.', 'request' => dd($body), ], 201);
     }
 
     public function parseAndStore($message){
