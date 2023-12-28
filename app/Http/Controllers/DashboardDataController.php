@@ -9,6 +9,7 @@ class DashboardDataController extends Controller
 {
     public function show(){
         $dds = new DashboardDataService();
+        dd($dds);
         return view('dashboard', [
             "terms" => $dds->terms,
             "subjects" => $dds->subjects,
