@@ -39,7 +39,6 @@ class DashboardDataService
             array_push($tempArray, $entry);
         }
         $this->subjectsGradesHistory = $tempArray;
-        // dd($this->subjectsGradesHistory);
     }
 
     public function subjectsAndGrades(){
@@ -51,7 +50,7 @@ class DashboardDataService
             $entry->grades = [];
 
             foreach ($this->terms as $key => $term) {
-                // magic
+                // magic ()
                 $g = $this->lastReportGrades->where(function ($g) use ($subject, $term) {
                     return $g->subject->id === $subject->id && $g->term->id === $term->id;
                 })->first();
