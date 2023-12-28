@@ -17,7 +17,7 @@ class WebhookController extends Controller
     public function parseAndStore($message){
         // Parse New Message
         $parser = new ParseService;
-        $parsed_class_grades = $parser->ParseHtml($message->body);
+        $parsed_class_grades = $parser->ParseHtml($message);
         $parsed_terms = $parser->GetTerm();
 
         // DataStorage Time!
