@@ -10,7 +10,8 @@ class WebhookController extends Controller
 {
     public function processIncomingWebhook(Request $request){
         $body = $request->all();
-        return response()->json(['message' => 'Report added successfully.', 'data' => $body], 201);;
+        $new_report = $this->parseAndStore($body);
+        return response()->json(['message' => 'Report added successfully.', 'report' => $new_report, ], 201);
     }
 
     public function parseAndStore($message){
@@ -24,5 +25,7 @@ class WebhookController extends Controller
         $ds->CreateTerms($parsed_terms);    // Create Terms if they do not exist
         $report = $ds->CreateReport($message);    // Create New Report entry
         $ds->CreateSubjectsAndGrades($parsed_class_grades, $report); // Adds grades to grades table & subjects if they do not exist
+
+        return $report;
     }
 }
