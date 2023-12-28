@@ -10,8 +10,8 @@ class WebhookController extends Controller
 {
     public function processIncomingWebhook(Request $request){
         $body = strval($request->all());
-        $new_report = $this->parseAndStore($body);
-        return response()->json(['message' => 'Report added successfully.', 'report' => $new_report, ], 201);
+        // $new_report = $this->parseAndStore($body);
+        return response()->json(['message' => 'Report added successfully.', 'report' => $body, ], 201);
     }
 
     public function parseAndStore($message){
