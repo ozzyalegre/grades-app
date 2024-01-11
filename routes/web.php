@@ -22,7 +22,7 @@ use App\Services\ParseService;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::middleware([

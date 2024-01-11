@@ -20,10 +20,10 @@ class WebhookController extends Controller
 
         try {
             $new_report = $this->parseAndStore($message);
-            return response()->json(['message' => 'Report added successfully.', 'request' => $new_report->message_id], 201);
+            return response()->json(['message' => 'Report created successfully.', 'request' => $new_report->message_id], 201);
         } catch (\Throwable $th) {
             logger($th);
-            return response()->json(['message' => 'Report failed to be added.', 'error' => json_encode($th)], 500);
+            return response()->json(['message' => 'Report failed to be created.', 'error' => json_encode($th)], 500);
         }
     }
 
