@@ -16,14 +16,14 @@ class WebhookController extends Controller
         $message->mid = $request->mid;
         $message->date_received = new Carbon($request->date_received, 'America/New_York');
         $message->from = $request->from;
-        $message->body = $request->body;
-        
+        $message->body = strval($request->body);
+
         try {
             $new_report = $this->parseAndStore($message);
             return response()->json(['message' => 'Report added successfully.', 'request' => $new_report->message_id], 201);
         } catch (\Throwable $th) {
             logger($th);
-            return response()->json(['message' => 'Report failed to be added.', 'error' => $th], 201);
+            return response()->json(['message' => 'Report failed to be added.', 'error' => json_encode($th)], 500);
         }
     }
 
