@@ -4,8 +4,9 @@
           <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
               <a href="#" class="-m-1.5 p-1.5">
-                <span class="sr-only">Your Company</span>
-                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+                <span class="sr-only">GradeGuard</span>
+                {{-- <img class="h-8 w-auto" src="https://img.logoipsum.com/293.svg" alt=""> --}}
+                <h1 class="text-xl">GradeGuard</h1>
               </a>
             </div>
             <div class="flex lg:hidden">
@@ -22,24 +23,24 @@
               <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Roadmap</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+              <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
             </div>
           </nav>
         </header>
       
-        <div class="relative isolate px-6 pt-14 lg:px-8">
+        <div class="relative isolate px-6 pt-14 lg:px-8 h-[85vh]">
           <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
             <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#0061ff] to-[#60efff] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
           </div>
           <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div class="hidden sm:mb-8 sm:flex sm:justify-center">
               <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                Current Roadmap! <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+                Current {{ Carbon\Carbon::now()->year }} Roadmap! <a href="#" class="font-semibold text-[#0061ff]"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
               </div>
             </div>
             <div class="text-center">
               <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Elevate Your Student Support System.</h1>
-              <p class="mt-6 text-lg leading-8 text-gray-600">Seamlessly track and manage your student's grades with GradeGuard – your academic ally.</p>
+              <p class="mt-6 text-lg leading-8 text-gray-600">Seamlessly track and manage your student's grades with <span class="font-bold">GradeGuard</span> – your academic ally.</p>
               <div class="mt-10 flex items-center justify-center gap-x-6">
                 <a href="#" class="rounded-md bg-[#0061ff] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#0061ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0061ff] ">Learn More <span aria-hidden="true">→</span></a>
               </div>
@@ -47,4 +48,12 @@
           </div>
         </div>
       </div>
+
+
+      <footer class="bg-white sticky" >
+        <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+            <p class="text-center text-xs leading-5 text-gray-500">&copy; {{ Carbon\Carbon::now()->year }} Ozzy Alegre. All rights reserved.</p>
+        </div>
+      </footer>
+      
 </x-guest-layout>
