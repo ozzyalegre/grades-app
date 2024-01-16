@@ -7,9 +7,8 @@
                 <h1 class="text-xl text-center">GradeGuard</h1>
               </a>
             <div class="rounded-full w-max mx-auto mt-5 px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                <a href="/" class="font-semibold text-[#0061ff]"><span class="absolute inset-0" aria-hidden="true"></span><span aria-hidden="true">&larr;</span> Back to homepage!</a>
+                <a href="/" class="font-semibold text-[#0061ff]"><span aria-hidden="true">&larr;</span> Back to homepage!</a>
             </div>
-
         </x-slot>
 
         <x-validation-errors class="mb-4" />

@@ -16,7 +16,7 @@ class WebhookController extends Controller
         $message->mid = $request->mid;
         $message->date_received = new Carbon($request->date_received, 'America/New_York');
         $message->from = $request->from;
-        $message->body = strval($request->body);
+        $message->body = $request->body;
 
         try {
             $new_report = $this->parseAndStore($message);
